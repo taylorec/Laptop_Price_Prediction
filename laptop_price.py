@@ -74,4 +74,4 @@ if st.button('Predict Price'):
 
     prediction = int(np.exp(loaded_GBr.predict(query)[0]))
 
-    st.title("Predicted price for this laptop is " + '$' + str(prediction+1000))
+    st.title("Predicted price for this laptop: $", prediction)
