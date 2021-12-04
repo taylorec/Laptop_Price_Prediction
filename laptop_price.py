@@ -23,7 +23,7 @@ ram = st.selectbox('Ram(in GB)', [2, 4, 6, 8, 12, 16, 24, 32, 64])
 os = st.selectbox('OS', data['OpSys'].unique())
 
 # weight of laptop
-weight = st.number_input('Weight of the laptop')
+weight = st.number_input('Weight of the laptop in kg')
 
 # touchscreen available in laptop or not
 touchscreen = st.selectbox('Touchscreen', ['No', 'Yes'])
@@ -67,11 +67,11 @@ if st.button('Predict Price'):
 
     ppi = ((X_resolution**2)+(Y_resolution**2))**0.5/(screen_size)
 
-    query = np.array([company, type_laptop, ram, weight,
-                      touchscreen, ips, ppi, cpu, hdd, ssd, gpu, os])
+    query = np.array([company, type_laptop, ram, os, weight,
+                      touchscreen, ips, ppi, cpu, hdd, ssd, gpu])
 
     query = query.reshape(1, 12)
 
-    prediction = int(np.exp(loaded_GBr.predict(query)[0]))
+    prediction = int(np.exp(loaded_GBr.predict(query)))
 
-    st.title("Predicted price for this laptop: $", prediction)
+    st.title('Predicted price for this laptop: ${}' .format(prediction))
