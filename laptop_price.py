@@ -1,24 +1,12 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
-from sklearn.model_selection import train_test_split
-from sklearn.ensemble import GradientBoostingRegressor
+import joblib
+
+model = joblib.load('GBr.joblib')
 
 data = pd.read_csv('laptop_data.csv')
 df = data.drop(['Unnamed: 0', 'Company'], axis=1)
-
-test = np.log(df['Price'])
-train = df.drop(['Price'],axis = 1)
-X_train, X_test, y_train, y_test = train_test_split(train,test,test_size=0.15,random_state=2)
-
-df['CPU_name'] = df['CPU_name'].map({'Intel Core i3':1, 'Intel Core i5':2, 'Intel Core i7':3, 'Other Intel Processor':4, 'AMD Processor':5})
-df['OpSys'] = df['OpSys'].map({'Mac':1, 'Windows':2, 'Other':3})
-df['TypeName'] = df['TypeName'].map({'Netbook':1, 'Notebook':2, 'Ultrabook':3, 'Gaming':4, '2 in 1 Convertible':5, 'Workstation':6})
-df['Gpu brand'] = df['Gpu brand'].map({'Intel':1, 'AMD':2, 'Nvidia':3})
-
-test = np.log(df['Price'])
-train = df.drop(['Price'],axis = 1)
-model = GradientBoostingRegressor().fit(X_train,y_train)
 
 st.title("Laptop Price Predictor")
 
