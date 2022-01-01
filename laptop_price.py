@@ -14,7 +14,7 @@ st.title("Laptop Price Predictor")
 type_laptop = st.selectbox('Type', df['TypeName'].unique())
 
 # Ram present in laptop
-ram = st.number_input('Ram(in GB)', [2, 4, 6, 8, 12, 16, 24, 32, 64])
+ram = st.selectbox('Ram(in GB)', [2, 4, 6, 8, 12, 16, 24, 32, 64])
 
 # os of laptop
 os = st.selectbox('OS', df['OpSys'].unique())
@@ -39,10 +39,10 @@ resolution = st.selectbox('Screen Resolution', [
 cpu = st.selectbox('CPU', df['CPU_name'].unique())
 
 # hdd
-hdd = st.number_input('HDD(in GB)', [0, 128, 256, 512, 1024, 2048])
+hdd = st.selectbox('HDD(in GB)', [0, 128, 256, 512, 1024, 2048])
 
 # ssd
-ssd = st.number_input('SSD(in GB)', [0, 8, 128, 256, 512, 1024])
+ssd = st.selectbox('SSD(in GB)', [0, 8, 128, 256, 512, 1024])
 
 # gpu brand
 gpu = st.selectbox('GPU brand', df['Gpu brand'].unique())
