@@ -11,13 +11,13 @@ df = data.drop(['Unnamed: 0', 'Company'], axis=1)
 st.title("Laptop Price Predictor")
 
 # type of laptop
-type_laptop = st.selectbox('Type', data['TypeName'].unique())
+type_laptop = st.selectbox('Type', df['TypeName'].unique())
 
 # Ram present in laptop
-ram = st.selectbox('Ram(in GB)', [2, 4, 6, 8, 12, 16, 24, 32, 64])
+ram = st.number_input('Ram(in GB)', [2, 4, 6, 8, 12, 16, 24, 32, 64])
 
 # os of laptop
-os = st.selectbox('OS', data['OpSys'].unique())
+os = st.selectbox('OS', df['OpSys'].unique())
 
 # weight of laptop
 weight = st.number_input('Weight of the laptop (in lbs)')
@@ -36,16 +36,16 @@ resolution = st.selectbox('Screen Resolution', [
                           '1920x1080', '1366x768', '1600x900', '3840x2160', '3200x1800', '2880x1800', '2560x1600', '2560x1440', '2304x1440'])
 
 # cpu
-cpu = st.selectbox('CPU', data['CPU_name'].unique())
+cpu = st.selectbox('CPU', df['CPU_name'].unique())
 
 # hdd
-hdd = st.selectbox('HDD(in GB)', [0, 128, 256, 512, 1024, 2048])
+hdd = st.number_input('HDD(in GB)', [0, 128, 256, 512, 1024, 2048])
 
 # ssd
-ssd = st.selectbox('SSD(in GB)', [0, 8, 128, 256, 512, 1024])
+ssd = st.number_input('SSD(in GB)', [0, 8, 128, 256, 512, 1024])
 
 # gpu brand
-gpu = st.selectbox('GPU brand', data['Gpu brand'].unique())
+gpu = st.selectbox('GPU brand', df['Gpu brand'].unique())
 
 ppi = None
 weight = weight*0.454
@@ -103,7 +103,7 @@ Y_resolution = int(resolution.split('x')[1])
 ppi = ((X_resolution**2)+(Y_resolution**2))**0.5/(screen_size)
 
 query = pd.DataFrame([[type_laptop, ram, os, weight,
-                      touchscreen, ips, ppi, cpu, hdd, ssd, gpu]], columns=data.columns)
+                      touchscreen, ips, ppi, cpu, hdd, ssd, gpu]], columns=df.columns)
     
 prediction = int(np.exp(model.predict(query)))
 
