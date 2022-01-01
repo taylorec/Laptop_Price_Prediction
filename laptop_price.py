@@ -6,7 +6,7 @@ import joblib
 model = joblib.load('GBr.joblib')
 
 data = pd.read_csv('laptop_data.csv')
-df = data.drop(['Unnamed: 0', 'Company'], axis=1)
+df = data.drop(['Unnamed: 0', 'Company', 'Price'], axis=1)
 
 st.title("Laptop Price Predictor")
 
